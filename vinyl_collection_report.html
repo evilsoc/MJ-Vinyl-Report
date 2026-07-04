@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vinyl Collection</title>
+<style>
+  :root {
+    --bg: #121214;
+    --card-bg: #1c1c1f;
+    --border: #2c2c30;
+    --text: #e8e8ea;
+    --muted: #9a9aa2;
+    --accent: #d9a441;
+    --sold: #7a3b3b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 32px;
+  }
+  header {
+    max-width: 1400px;
+    margin: 0 auto 28px auto;
+  }
+  h1 {
+    font-size: 1.7rem;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    min-width: 120px;
+  }
+  .stat .value {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .stat .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .controls {
+    max-width: 1400px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  input#search {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 220px;
+  }
+  select#genreFilter {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  .grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  .cover-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #0c0c0d;
+  }
+  .cover-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .sold-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--sold);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+  .info {
+    padding: 12px 14px 14px 14px;
+  }
+  .title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+    line-height: 1.25;
+  }
+  .artist {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 8px 0;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .genre-tag {
+    background: #2a2420;
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+  }
+  .year-tag {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .price {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .shop {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎵 Vinyl Collection</h1>
+  <div class="subtitle">Cover art report — generated automatically from live inventory</div>
+  <div class="stats">
+    <div class="stat"><div class="value">66</div><div class="label">Records</div></div>
+    <div class="stat"><div class="value">$3.93</div><div class="label">Avg Cost</div></div>
+    <div class="stat"><div class="value">91%</div><div class="label">Covers Found</div></div>
+    <div class="stat"><div class="value">11%</div><div class="label">Years Identified</div></div>
+  </div>
+</header>
+<div class="controls">
+  <input id="search" type="text" placeholder="Search artist or title...">
+  <select id="genreFilter">
+    <option value="">All Genres</option>
+    <option value="Blues">Blues</option>
+    <option value="Blues Rock">Blues Rock</option>
+    <option value="Jazz">Jazz</option>
+    <option value="Jazz Fusion">Jazz Fusion</option>
+    <option value="Jazz vocal">Jazz vocal</option>
+    <option value="Latin jazz">Latin jazz</option>
+    <option value="New age">New age</option>
+    <option value="OST">OST</option>
+    <option value="Orchestral pop">Orchestral pop</option>
+    <option value="Prog or Psychedelic Rock">Prog or Psychedelic Rock</option>
+    <option value="Rhythm & blues">Rhythm & blues</option>
+    <option value="Rock & Pop">Rock & Pop</option>
+    <option value="Soul jazz">Soul jazz</option>
+    <option value="Traditional jazz">Traditional jazz</option>
+  </select>
+</div>
+<div class="grid" id="grid">
+  
+<div class="card" data-search="carly simon hotcakes (no secrets sleeve)" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/b3/28/db/b328db0b-20e9-8e04-3aed-f837a49fbe0c/mzm.kigxwpqu.jpg/600x600bb.jpg" alt="Hotcakes (No Secrets sleeve) cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Hotcakes (No Secrets sleeve)</p>
+    <p class="artist">Carly Simon</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$2.99</span>
+    </div>
+    <div class="shop">Vintage Vault@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="chris connor a jazz date with" data-genre="Jazz vocal">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/c9/81/c3/mzi.gguzukkl.jpg/600x600bb.jpg" alt="A Jazz date with cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">A Jazz date with</p>
+    <p class="artist">Chris Connor</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz vocal</span>
+      <span class="price">$5.00</span>
+    </div>
+    <div class="shop">Ribbon Records</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="crb trick" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>" alt="Trick cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Trick</p>
+    <p class="artist">CRB</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">Ribbon Records</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="dave grusin night-lines" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ed/f8/72/edf8726d-52ae-a270-f144-95d6e43ad948/00011105950428.rgb.jpg/600x600bb.jpg" alt="Night-lines cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Night-lines</p>
+    <p class="artist">Dave Grusin</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$4.00</span>
+    </div>
+    <div class="shop">Ribbon Records</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jakob magnusson special treatment" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/48/6a/e3/mzi.fupjbydt.jpg/600x600bb.jpg" alt="Special Treatment cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Special Treatment</p>
+    <p class="artist">Jakob Magnusson</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$1.99</span>
+    </div>
+    <div class="shop">Vintage Vault@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jeff lorber fusion galaxyian" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/0c/5e/8a/0c5e8a1b-08ff-9bc6-f13d-94d44e23ed3c/886444334679.jpg/600x600bb.jpg" alt="Galaxyian cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Galaxyian</p>
+    <p class="artist">Jeff Lorber Fusion</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$4.00</span>
+    </div>
+    <div class="shop">Ribbon Records</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jonathan cain band windy city breakdown" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/ec/f8/ae/mzi.hdqgqrmc.jpg/600x600bb.jpg" alt="Windy City Breakdown cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Windy City Breakdown</p>
+    <p class="artist">Jonathan Cain Band</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$1.50</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="shirley bassey nobody does it like me" data-genre="Orchestral pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b6/d8/1b/b6d81b9d-f2d0-32d1-c10c-a2818b889538/190295648381.jpg/600x600bb.jpg" alt="Nobody does it like me cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Nobody does it like me</p>
+    <p class="artist">Shirley Bassey</p>
+    <div class="meta">
+      <span class="genre-tag">Orchestral pop</span>
+      <span class="price">$1.00</span>
+    </div>
+    <div class="shop">Ribbon Records</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="crb three" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>" alt="Three cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Three</p>
+    <p class="artist">CRB</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$5.33</span>
+    </div>
+    <div class="shop">03-14850-01016</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="ramsey lewis wade in the water" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/2d/83/02/2d830279-cb33-5809-8d6f-90a450348727/00602577039768.rgb.jpg/600x600bb.jpg" alt="Wade in the water cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Wade in the water</p>
+    <p class="artist">Ramsey Lewis</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$5.33</span>
+    </div>
+    <div class="shop">15-14829-58944</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="ramsey lewis them changes" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/44/62/6a/44626aaf-5bdc-dd7c-ad64-007d2eea5895/00602577045875.rgb.jpg/600x600bb.jpg" alt="Them changes cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Them changes</p>
+    <p class="artist">Ramsey Lewis</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$5.33</span>
+    </div>
+    <div class="shop">15-14829-58944</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jethro tull this was" data-genre="Blues Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a2/82/66/a28266d2-3993-be85-23ea-e5af54000262/190295611453.jpg/600x600bb.jpg" alt="This Was cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">This Was</p>
+    <p class="artist">Jethro Tull</p>
+    <div class="meta">
+      <span class="genre-tag">Blues Rock</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="joe cocker mad dogs & englishmen" data-genre="Blues Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/98/0e/63/980e639f-5a22-f1d4-7f48-f72e53e17889/15UMGIM78023.rgb.jpg/600x600bb.jpg" alt="Mad Dogs & Englishmen cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Mad Dogs & Englishmen</p>
+    <p class="artist">Joe Cocker</p>
+    <div class="meta">
+      <span class="genre-tag">Blues Rock</span>
+      <span class="price">$4.99</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="john handy recorded live at the monterey jazz festival" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/KlBrC0chviFOYXz6sUsvjXOLsTG2bY4HtvJY2RIbDmU/rs:fit/g:sm/q:90/h:434/w:435/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgzNjAx/MTgtMTQ4NjU3MDY2/MC00NjcyLmpwZWc.jpeg" alt="Recorded Live at the Monterey Jazz Festival cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Recorded Live at the Monterey Jazz Festival</p>
+    <p class="artist">John Handy</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$9.99</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="nancy wilson / cannonball adderley nancy wilson/cannonball adderley" data-genre="Jazz vocal">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/7e/8a/68/7e8a6809-3fae-b51d-ae37-ac9fef812f8e/00077778120452.jpg/600x600bb.jpg" alt="Nancy Wilson/Cannonball Adderley cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Nancy Wilson/Cannonball Adderley</p>
+    <p class="artist">Nancy Wilson / Cannonball Adderley</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz vocal</span>
+      <span class="price">$1.99</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="neil diamond jonathan livingston seagull" data-genre="OST">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/2d/95/16/2d951613-7ad5-64be-c8c8-c2226dbdf547/00602557188424.rgb.jpg/600x600bb.jpg" alt="Jonathan Livingston Seagull cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Jonathan Livingston Seagull</p>
+    <p class="artist">Neil Diamond</p>
+    <div class="meta">
+      <span class="genre-tag">OST</span>
+      <span class="price">$1.99</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="ramsey lewis golden hits" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/bc/7e/f5/mzi.xhguujzv.jpg/600x600bb.jpg" alt="Golden Hits cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Golden Hits</p>
+    <p class="artist">Ramsey Lewis</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Hudson Vinyl@Two Sisters</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="billie eilish don't smile at me" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/02/1d/30/021d3036-5503-3ed3-df00-882f2833a6ae/17UM1IM17026.rgb.jpg/600x600bb.jpg" alt="Don't Smile at Me cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Don't Smile at Me</p>
+    <p class="artist">Billie Eilish</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="cirkus prütz white jazz - black magic" data-genre="Blues Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2a/78/3c/2a783c7c-2949-85c6-f249-0b7650ed4e9d/5054526707313_cover.jpg/600x600bb.jpg" alt="White Jazz - Black Magic cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">White Jazz - Black Magic</p>
+    <p class="artist">Cirkus Prütz <span class="year-tag">· 2019</span></p>
+    <div class="meta">
+      <span class="genre-tag">Blues Rock</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="country joe & the fish the life and times of country joe and the fish from haight-ashbury to woodstock" data-genre="Prog or Psychedelic Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/cb/69/80/cb6980f3-09e6-05f1-9028-76d287fdd659/00015707272858.jpg/600x600bb.jpg" alt="The Life and Times of Country Joe and the Fish from Haight-Ashbury to Woodstock cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">The Life and Times of Country Joe and the Fish from Haight-Ashbury to Woodstock</p>
+    <p class="artist">Country Joe & The Fish</p>
+    <div class="meta">
+      <span class="genre-tag">Prog or Psychedelic Rock</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="emerson, lake & palmer brain salad surgery" data-genre="Prog or Psychedelic Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6d/f7/07/6df70734-9cf1-cc68-36ab-1efc888ad956/4050538180312.jpg/600x600bb.jpg" alt="Brain Salad Surgery cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Brain Salad Surgery</p>
+    <p class="artist">Emerson, Lake & Palmer</p>
+    <div class="meta">
+      <span class="genre-tag">Prog or Psychedelic Rock</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="fleetwood mac heroes are hard to find" data-genre="Prog or Psychedelic Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9e/52/08/9e5208de-982f-faab-c232-cd3f326333de/603497869916.jpg/600x600bb.jpg" alt="Heroes Are Hard to Find cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Heroes Are Hard to Find</p>
+    <p class="artist">Fleetwood Mac</p>
+    <div class="meta">
+      <span class="genre-tag">Prog or Psychedelic Rock</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="it’s a beautiful day at carnegie hall" data-genre="Prog or Psychedelic Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/26/59/bf/2659bf38-37ef-443a-a361-0d41f3edee9f/mzi.pbkqpmua.jpg/600x600bb.jpg" alt="At Carnegie Hall cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">At Carnegie Hall</p>
+    <p class="artist">It’s A Beautiful Day <span class="year-tag">· 1988</span></p>
+    <div class="meta">
+      <span class="genre-tag">Prog or Psychedelic Rock</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="roxy music avalon" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/72/ec/3b/72ec3b11-1060-be9d-1927-ddc611609be0/13UABIM59240.rgb.jpg/600x600bb.jpg" alt="Avalon cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Avalon</p>
+    <p class="artist">Roxy Music</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="the beatles rarities" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/01/69/02/01690216-48fc-1c54-b1de-48170d16b1c3/00602567725268.rgb.jpg/600x600bb.jpg" alt="Rarities cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Rarities</p>
+    <p class="artist">The Beatles</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="tom waits blue valentine" data-genre="Blues Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d3/f3/e0/d3f3e036-e38a-19b7-58e3-cd948e63006f/0045778757008.png/600x600bb.jpg" alt="Blue Valentine cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Blue Valentine</p>
+    <p class="artist">Tom Waits</p>
+    <div class="meta">
+      <span class="genre-tag">Blues Rock</span>
+      <span class="price">$3.33</span>
+    </div>
+    <div class="shop">25-14790-62028</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="coleman hawkins timeless jazz" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ee/e9/85/eee98538-55a5-b79b-b6c4-8eb8405b4460/00888072058613.rgb.jpg/600x600bb.jpg" alt="Timeless Jazz cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Timeless Jazz</p>
+    <p class="artist">Coleman Hawkins</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$1.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="herman foster explosive piano of herman foster" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/rNOIhxj7OB2SSAxwf97hiF-Rk4g6saJep9-q8IbpyUU/rs:fit/g:sm/q:90/h:269/w:271/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUwNDU0/NTEtMTM4MzAwNzA0/MC0zNTcyLmpwZWc.jpeg" alt="Explosive Piano of Herman Foster cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Explosive Piano of Herman Foster</p>
+    <p class="artist">Herman Foster</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$5.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jimmy hamilton swing low, sweet clarinet" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/4e/d3/bb/mzi.waaxbqxc.jpg/600x600bb.jpg" alt="Swing Low, Sweet Clarinet cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Swing Low, Sweet Clarinet</p>
+    <p class="artist">Jimmy Hamilton</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$1.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="johnny jones & billy boy arnold johnny jones with billy boy arnold" data-genre="Blues">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/lWKMsVMqCS35YSifNtxmrxD794ngVJ80ZYAiuTyiCNY/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NjMx/MjMtMTU2MjA3MzYz/Ni04MjUwLmpwZWc.jpeg" alt="Johnny Jones with Billy Boy Arnold cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Johnny Jones with Billy Boy Arnold</p>
+    <p class="artist">Johnny Jones & Billy Boy Arnold</p>
+    <div class="meta">
+      <span class="genre-tag">Blues</span>
+      <span class="price">$6.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="roy eldridge nifty cat strikes west" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/iO4n0wgHJfN_h2sNtv4gUQnKjzWstbFMstS1n8oh-7Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU0MTIx/MjktMTYxNzYxNzQx/MC0yMjQ5LmpwZWc.jpeg" alt="Nifty Cat Strikes West cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Nifty Cat Strikes West</p>
+    <p class="artist">Roy Eldridge</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$4.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="stan getz opus de bop – the savoy sessions" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>" alt="Opus De Bop – The Savoy Sessions cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Opus De Bop – The Savoy Sessions</p>
+    <p class="artist">Stan Getz</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="various artists blues jam (buddah bds‐7510)" data-genre="Blues">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e2/1c/d1/e21cd12b-5583-88c6-29ec-39efbd5b6c64/21UMGIM53031.rgb.jpg/600x600bb.jpg" alt="Blues Jam (Buddah BDS‐7510) cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Blues Jam (Buddah BDS‐7510)</p>
+    <p class="artist">Various Artists <span class="year-tag">· 2021</span></p>
+    <div class="meta">
+      <span class="genre-tag">Blues</span>
+      <span class="price">$5.99</span>
+    </div>
+    <div class="shop">Dusty Groove</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jean-luc ponty live" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/z_IzPm5h3ihogO3cf729CeM3pjnh1cZ7wpnxKLJm-Sw/rs:fit/g:sm/q:90/h:607/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjYz/NDgtMTQ2MjkwNTEx/Mi02NzgyLmpwZWc.jpeg" alt="Live cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Live</p>
+    <p class="artist">Jean-Luc Ponty</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$5.05</span>
+    </div>
+    <div class="shop">03-14801-58147</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="ramsey lewis trio the best of" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/f6/5b/d6/f65bd650-6232-9490-b1fa-494422bde6da/06UMGIM16093.rgb.jpg/600x600bb.jpg" alt="The Best Of cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">The Best Of</p>
+    <p class="artist">Ramsey Lewis Trio</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$5.05</span>
+    </div>
+    <div class="shop">03-14801-58147</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="ramsey lewis trio bohemian caverns" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/64/92/84649225-00c6-8e04-b140-17d91b929aff/08UMGIM03859.rgb.jpg/600x600bb.jpg" alt="Bohemian Caverns cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Bohemian Caverns</p>
+    <p class="artist">Ramsey Lewis Trio</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$5.05</span>
+    </div>
+    <div class="shop">03-14801-58147</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="ramsey lewis trio inside" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>" alt="Inside cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Inside</p>
+    <p class="artist">Ramsey Lewis Trio</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$5.05</span>
+    </div>
+    <div class="shop">03-14801-58147</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="bill doggett the band with the beat" data-genre="Rhythm & blues">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/Iv7tCvoNZsxuXGfZPOUcJThklGwSF1S88YbtVwFM5FM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NzM4/MDEtMTYzMTgyNDk0/MC0yMjEzLmpwZWc.jpeg" alt="The Band With The Beat cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">The Band With The Beat</p>
+    <p class="artist">Bill Doggett</p>
+    <div class="meta">
+      <span class="genre-tag">Rhythm & blues, jazz combo</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="chuck berry st. louie to frisco to memphis (disc 2)" data-genre="Blues Rock">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/9f/3f/35/9f3f35a5-dda1-d317-a3b3-0974a452f54a/00042283607323.rgb.jpg/600x600bb.jpg" alt="St. Louie To Frisco To Memphis (Disc 2) cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">St. Louie To Frisco To Memphis (Disc 2)</p>
+    <p class="artist">Chuck Berry</p>
+    <div class="meta">
+      <span class="genre-tag">Blues Rock</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="chuck mangione land of make believe" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/94/97/5c/94975cf3-86f4-0476-b61e-e77b9e9059d5/00042282253927.rgb.jpg/600x600bb.jpg" alt="Land of Make Believe cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Land of Make Believe</p>
+    <p class="artist">Chuck Mangione</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="george benson breezin’" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cb/37/9a/cb379acc-ee1e-920e-c287-6a8a0ed4c099/603497888269.jpg/600x600bb.jpg" alt="Breezin’ cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Breezin’</p>
+    <p class="artist">George Benson <span class="year-tag">· 1976</span></p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="jimmy mcgriff honey (organ & big blues band)" data-genre="Soul jazz">
+  <div class="cover-wrap">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>" alt="Honey (Organ & Big Blues Band) cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Honey (Organ & Big Blues Band)</p>
+    <p class="artist">Jimmy McGriff</p>
+    <div class="meta">
+      <span class="genre-tag">Soul jazz, organ blues</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="kid ory and his creole jazz band the original jazz" data-genre="Traditional jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/8f/5b/fb8f5b93-e3e0-586f-0c3d-2fa414496f0d/mzi.vhfrbsck.tif/600x600bb.jpg" alt="The Original Jazz cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">The Original Jazz</p>
+    <p class="artist">Kid Ory and His Creole Jazz Band</p>
+    <div class="meta">
+      <span class="genre-tag">Traditional jazz, Dixieland</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="les paul & mary ford warm and wonderful" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/86/99/28/86992802-54a8-4051-1776-350389329931/886444230063.jpg/600x600bb.jpg" alt="Warm and Wonderful cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Warm and Wonderful</p>
+    <p class="artist">Les Paul & Mary Ford</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz, Traditional pop</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="the charles lloyd quartet love-in" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/y2004/m12/d29/h08/s06.uulvdwzf.jpg/600x600bb.jpg" alt="Love-In cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Love-In</p>
+    <p class="artist">The Charles Lloyd Quartet</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="various artists blues: oldies and goodies" data-genre="Blues">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8c/f2/1f/8cf21f62-eed1-64c0-e710-df52dc3556c3/078635640823.jpg/600x600bb.jpg" alt="Blues: Oldies and Goodies cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Blues: Oldies and Goodies</p>
+    <p class="artist">Various Artists</p>
+    <div class="meta">
+      <span class="genre-tag">Blues</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">24-14777-25680 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="matrix wizard" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/cMG9Bv1dwHksA0l6I1kbfiUg2m2IcVJ8tnaDHTXrD3s/rs:fit/g:sm/q:90/h:450/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NDA2/MjM1LTE2MTMyNzY4/MTYtMzc4My5qcGVn.jpeg" alt="Wizard cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Wizard</p>
+    <p class="artist">Matrix</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$8.99</span>
+    </div>
+    <div class="shop">Shuga Wicker</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="neil diamond hot august night" data-genre="Rock & Pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/bc/87/42/bc8742a5-aef9-359f-3292-19e2b1e560e8/00602557219838.rgb.jpg/600x600bb.jpg" alt="Hot august night cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Hot august night</p>
+    <p class="artist">Neil Diamond</p>
+    <div class="meta">
+      <span class="genre-tag">Rock & Pop</span>
+      <span class="price">$3.00</span>
+    </div>
+    <div class="shop">Shuga Wicker</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="tom scott blow it out" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/JtDvdITNCaiFlxbhKZpmob6OQRR8CXsHh-65wzxZQ_s/rs:fit/g:sm/q:90/h:629/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNTI1/NzAxLTE1MzY5ODM3/NjEtNTI2Ny5qcGVn.jpeg" alt="Blow it out cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Blow it out</p>
+    <p class="artist">Tom Scott</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$5.99</span>
+    </div>
+    <div class="shop">Shuga Wicker</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="cap’n john handy with the claude hopkins band introducing cap’n john handy and his men of jazz" data-genre="Traditional jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/c4/54/73/c4547364-a91b-1090-a021-c9c33590f32a/886446882291.jpg/600x600bb.jpg" alt="Introducing Cap’n John Handy and His Men of Jazz cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Introducing Cap’n John Handy and His Men of Jazz</p>
+    <p class="artist">Cap’n John Handy with the Claude Hopkins Band <span class="year-tag">· 1967</span></p>
+    <div class="meta">
+      <span class="genre-tag">Traditional jazz, Dixieland</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="edie adams behind those swingin’ doors" data-genre="Jazz vocal">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/VLvQn7YJI4Hp6eVukM4DPmUPa9wtzcfCZeoNZY9JVJ4/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNzMz/MTYtMTUzNjc5NjY2/Mi03OTk2LmpwZWc.jpeg" alt="Behind Those Swingin’ Doors cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Behind Those Swingin’ Doors</p>
+    <p class="artist">Edie Adams <span class="year-tag">· 1964</span></p>
+    <div class="meta">
+      <span class="genre-tag">Jazz vocal</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="joe bushkin nightsounds" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/syImlsWPjBGHSzIQzl8Jri5cFbtXeGueq3yu_MN57tc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU4OTQ5/NjMtMTQwNTYzODUw/MC02Njc5LmpwZWc.jpeg" alt="Nightsounds cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Nightsounds</p>
+    <p class="artist">Joe Bushkin</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz, Easy listening</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="les baxter baxter’s best" data-genre="Orchestral pop">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/33/6c/fa/336cfa30-2d4d-0fb2-94f1-910b388bc458/00724383702855.jpg/600x600bb.jpg" alt="Baxter’s Best cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Baxter’s Best</p>
+    <p class="artist">Les Baxter <span class="year-tag">· 1960</span></p>
+    <div class="meta">
+      <span class="genre-tag">Orchestral pop</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="louis armstrong hello, dolly!" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/08/7d/40/087d4000-5a0f-2803-61d6-4adfc9401ff8/06UMGIM02668.rgb.jpg/600x600bb.jpg" alt="Hello, Dolly! cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Hello, Dolly!</p>
+    <p class="artist">Louis Armstrong</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz, Traditional pop</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="pearl bailey intoxicating pearl bailey" data-genre="Jazz vocal">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/12/5c/f5/125cf564-62e2-a946-0a6c-bbd1af70213c/20UMGIM21569.rgb.jpg/600x600bb.jpg" alt="Intoxicating Pearl Bailey cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Intoxicating Pearl Bailey</p>
+    <p class="artist">Pearl Bailey</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz vocal</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="sil austin plays pretty for the people again" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/Ozrb-qyf_YF2C_H_HKEnilaftykq-3DszZ39OCOqqfs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzMzgy/NDEtMTU1NTY5MTcz/NC04NjE2LmpwZWc.jpeg" alt="Plays Pretty for the People Again cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Plays Pretty for the People Again</p>
+    <p class="artist">Sil Austin</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz, Easy listening</span>
+      <span class="price">$3.49</span>
+    </div>
+    <div class="shop">22-14736-67799 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="john tropea to touch you again" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7d/79/27/7d79279d-3343-c43c-16ac-438fe716af6f/885767235656.jpg/600x600bb.jpg" alt="To Touch You Again cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">To Touch You Again</p>
+    <p class="artist">John Tropea</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$4.20</span>
+    </div>
+    <div class="shop">22-14736-67800 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="larry coryell (with john scofield & joe beck) tributaries" data-genre="Jazz">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9c/b5/8e/9cb58e8a-9abc-4590-c663-9a4f682e6080/886446395852.jpg/600x600bb.jpg" alt="Tributaries cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Tributaries</p>
+    <p class="artist">Larry Coryell (with John Scofield & Joe Beck)</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz</span>
+      <span class="price">$4.20</span>
+    </div>
+    <div class="shop">22-14736-67800 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="mark colby serpentine fire" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/dGfLBLEuBIaq2gjh-Tr7XvuNawY_Q-UiSi73RsZqxm4/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2Mjkx/NDctMTQ1NjkxNjgw/MS0xNDAzLmpwZWc.jpeg" alt="Serpentine Fire cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Serpentine Fire</p>
+    <p class="artist">Mark Colby</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$4.20</span>
+    </div>
+    <div class="shop">22-14736-67800 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="paulo ramos band zigzag" data-genre="Latin jazz">
+  <div class="cover-wrap">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>" alt="Zigzag cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Zigzag</p>
+    <p class="artist">Paulo Ramos Band</p>
+    <div class="meta">
+      <span class="genre-tag">Latin jazz</span>
+      <span class="price">$4.20</span>
+    </div>
+    <div class="shop">22-14736-67800 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="stanley turrentine west side highway" data-genre="Jazz Fusion">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/w06t48eVGvC9AWdKNiUFagRnAovO6Idi2MQgDB848y4/rs:fit/g:sm/q:90/h:601/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1NDAx/NzAwLTE2NzA0NzU2/OTUtNjU5OC5qcGVn.jpeg" alt="West Side Highway cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">West Side Highway</p>
+    <p class="artist">Stanley Turrentine</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz Fusion</span>
+      <span class="price">$4.20</span>
+    </div>
+    <div class="shop">22-14736-67800 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="tania maria piquant" data-genre="Latin jazz">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/JGLN5GLmb_q6rctuyEnoM9fVIWWf-rW7MLgPKF2GOPw/rs:fit/g:sm/q:90/h:533/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MzE0/MTgxLTE1NzIzNzIy/MjQtMTUyNi5qcGVn.jpeg" alt="Piquant cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Piquant</p>
+    <p class="artist">Tania Maria</p>
+    <div class="meta">
+      <span class="genre-tag">Latin jazz</span>
+      <span class="price">$4.20</span>
+    </div>
+    <div class="shop">22-14736-67800 ebay</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="billy eckstine the duke, the blues, and me!" data-genre="Jazz vocal">
+  <div class="cover-wrap">
+    <img src="https://i.discogs.com/aQePzU7jYe40njS3M2g2c1Mtxf77SreBKRRbeIPpjLc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMTIw/NjkzLTE2NDQ2MTUw/MTEtNTU2Ni5qcGVn.jpeg" alt="The duke, the blues, and me! cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">The duke, the blues, and me!</p>
+    <p class="artist">Billy Eckstine</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz vocal</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Reckless Loop</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="little milton playing for keeps" data-genre="Blues">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ae/22/2c/ae222cf0-6fe5-586b-3fbf-0a6f92aa138b/mzi.imngnozj.jpg/600x600bb.jpg" alt="Playing for keeps cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Playing for keeps</p>
+    <p class="artist">Little Milton</p>
+    <div class="meta">
+      <span class="genre-tag">Blues</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Reckless Loop</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="nancy wilson the sound of nancy wilson" data-genre="Jazz vocal">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1c/8a/37/1c8a3706-2383-9721-94bd-0889843f9b8a/21UM1IM29645.rgb.jpg/600x600bb.jpg" alt="The sound of Nancy Wilson cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">The sound of Nancy Wilson</p>
+    <p class="artist">Nancy Wilson</p>
+    <div class="meta">
+      <span class="genre-tag">Jazz vocal, Soul</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Reckless Loop</div>
+  </div>
+</div>
+
+
+<div class="card" data-search="paul horn inside" data-genre="New age">
+  <div class="cover-wrap">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/56/5f/e0/mzi.eqpfnhsp.jpg/600x600bb.jpg" alt="Inside cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
+<rect width='300' height='300' fill='%232a2a2e'/>
+<circle cx='150' cy='150' r='110' fill='%23151517' stroke='%23444' stroke-width='2'/>
+<circle cx='150' cy='150' r='18' fill='%23444'/>
+<circle cx='150' cy='150' r='6' fill='%232a2a2e'/>
+</svg>'">
+    
+  </div>
+  <div class="info">
+    <p class="title">Inside</p>
+    <p class="artist">Paul Horn</p>
+    <div class="meta">
+      <span class="genre-tag">New age</span>
+      <span class="price">$3.99</span>
+    </div>
+    <div class="shop">Reckless Loop</div>
+  </div>
+</div>
+
+</div>
+<script>
+  const search = document.getElementById('search');
+  const genreFilter = document.getElementById('genreFilter');
+  const cards = Array.from(document.querySelectorAll('.card'));
+
+  function applyFilters() {
+    const q = search.value.toLowerCase();
+    const g = genreFilter.value;
+    cards.forEach(c => {
+      const text = c.dataset.search;
+      const genre = c.dataset.genre;
+      const matchesText = text.includes(q);
+      const matchesGenre = !g || genre === g;
+      c.classList.toggle('hidden', !(matchesText && matchesGenre));
+    });
+  }
+
+  search.addEventListener('input', applyFilters);
+  genreFilter.addEventListener('change', applyFilters);
+</script>
+</body>
+</html>
