@@ -24,6 +24,20 @@
   header {
     max-width: 1400px;
     margin: 0 auto 28px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .header-main {
+    flex: 1;
+  }
+  .generated-at {
+    color: var(--muted);
+    font-size: 0.78rem;
+    white-space: nowrap;
+    text-align: right;
+    margin-top: 4px;
   }
   h1 {
     font-size: 1.7rem;
@@ -191,14 +205,17 @@
 </head>
 <body>
 <header>
-  <h1>🎵 Vinyl Collection</h1>
-  <div class="stats">
-    <div class="stat"><div class="value">66</div><div class="label">Records</div></div>
-    <div class="stat"><div class="value">$3.93</div><div class="label">Avg Cost</div></div>
-    <div class="stat"><div class="value">98%</div><div class="label">Covers Found</div></div>
-    <div class="stat"><div class="value">79%</div><div class="label">Years Identified</div></div>
-    <div class="stat"><div class="value">55/66</div><div class="label">Discogs Rated</div></div>
+  <div class="header-main">
+    <h1>🎵 Vinyl Collection</h1>
+    <div class="stats">
+      <div class="stat"><div class="value">66</div><div class="label">Records</div></div>
+      <div class="stat"><div class="value">$3.93</div><div class="label">Avg Cost</div></div>
+      <div class="stat"><div class="value">98%</div><div class="label">Covers Found</div></div>
+      <div class="stat"><div class="value">79%</div><div class="label">Years Identified</div></div>
+      <div class="stat"><div class="value">55/66</div><div class="label">Discogs Rated</div></div>
+    </div>
   </div>
+  <div class="generated-at">Generated Jul 5, 2026 11:39 AM</div>
 </header>
 <div class="controls">
   <input id="search" type="text" placeholder="Search artist or title...">
