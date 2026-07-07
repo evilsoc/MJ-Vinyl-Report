@@ -89,7 +89,7 @@
     flex: 1;
     min-width: 220px;
   }
-  select#genreFilter {
+  select#genreFilter, select#sortBy {
     background: var(--card-bg);
     border: 1px solid var(--border);
     color: var(--text);
@@ -200,39 +200,13 @@
     color: var(--muted);
     margin-top: 4px;
   }
-  .album-details {
-    margin-top: 8px;
-    font-size: 0.75rem;
-  }
-  .album-details summary {
-    cursor: pointer;
-    color: var(--accent);
-    font-size: 0.72rem;
-    user-select: none;
-  }
-  .album-details summary:hover {
-    text-decoration: underline;
-  }
-  .album-desc {
-    color: var(--text);
-    line-height: 1.4;
-    margin: 8px 0 6px 0;
-  }
-  .album-desc a {
-    color: var(--accent);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .album-desc a:hover {
-    text-decoration: underline;
-  }
   .dustygroove-link {
-    margin: 8px 0 0 0;
+    margin-top: 6px;
   }
   .dustygroove-link a {
     color: var(--accent);
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
   }
   .dustygroove-link a:hover {
     text-decoration: underline;
@@ -252,7 +226,7 @@
       <div class="stat"><div class="value">57/68</div><div class="label">Discogs Rated</div></div>
     </div>
   </div>
-  <div class="generated-at">Generated Jul 7, 2026 4:43 PM</div>
+  <div class="generated-at">Generated Jul 7, 2026 5:31 PM</div>
 </header>
 <div class="controls">
   <input id="search" type="text" placeholder="Search artist or title...">
@@ -291,10 +265,16 @@
     <option value="Unclassified">Unclassified</option>
     <option value="Vocal">Vocal</option>
   </select>
+  <select id="sortBy">
+    <option value="default">Sort: Default</option>
+    <option value="artist">Artist (A–Z)</option>
+    <option value="date-desc">Date Purchased (Newest)</option>
+    <option value="date-asc">Date Purchased (Oldest)</option>
+  </select>
 </div>
 <div class="grid" id="grid">
   
-<div class="card" data-search="billy eckstine the duke, the blues, and me!" data-genre="Jazz">
+<div class="card" data-search="billy eckstine the duke, the blues, and me!" data-genre="Jazz" data-artist="billy eckstine" data-date="2026-06-09" data-index="0">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/aQePzU7jYe40njS3M2g2c1Mtxf77SreBKRRbeIPpjLc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMTIw/NjkzLTE2NDQ2MTUw/MTEtNTU2Ni5qcGVn.jpeg" alt="The duke, the blues, and me! cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -312,12 +292,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(1 rating · 9 want / 5 have)</span></div>
     <div class="shop">Reckless Loop · 6/9/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Billy+Eckstine+The+duke%2C+the+blues%2C+and+me%21" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Billy+Eckstine+The+duke%2C+the+blues%2C+and+me%21" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="little milton playing for keeps" data-genre="Modern Electric Blues">
+<div class="card" data-search="little milton playing for keeps" data-genre="Modern Electric Blues" data-artist="little milton" data-date="2026-06-09" data-index="1">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/C4I9EZbYhRw45S8EhSsyu_NWpj9yZ3NqFi-gikdfQ00/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4NjA0/MC0xNTUyODk3MDY1/LTcxODYuanBlZw.jpeg" alt="Playing for keeps cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -335,12 +315,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.13</span><span>(24 ratings · 36 want / 348 have)</span></div>
     <div class="shop">Reckless Loop · 6/9/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Little+Milton+Playing+for+keeps" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Little+Milton+Playing+for+keeps" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="nancy wilson the sound of nancy wilson" data-genre="Jazz">
+<div class="card" data-search="nancy wilson the sound of nancy wilson" data-genre="Jazz" data-artist="nancy wilson" data-date="2026-06-09" data-index="2">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/_rnK-s-XUFsMeqIIxiPzd4a8P0Z_gjN9oiXswuvcgpI/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMzk5/NjQ4LTE1MTU2NTUw/OTUtNzYyMS5qcGVn.jpeg" alt="The sound of Nancy Wilson cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -358,12 +338,12 @@
     </div>
     
     <div class="shop">Reckless Loop · 6/9/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Nancy+Wilson+The+sound+of+Nancy+Wilson" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Nancy+Wilson+The+sound+of+Nancy+Wilson" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="paul horn inside" data-genre="Free Jazz">
+<div class="card" data-search="paul horn inside" data-genre="Free Jazz" data-artist="paul horn" data-date="2026-06-09" data-index="3">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/FdB_RhfxbPM_lQJYKAhLvsxhTPEkhB_KEQOysxmSS4w/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzODE0/ODI3LTE2NTcyMjkz/MzYtMzg3Ni5qcGVn.jpeg" alt="Inside cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -381,12 +361,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(1 rating · 17 want / 11 have)</span></div>
     <div class="shop">Reckless Loop · 6/9/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Paul+Horn+Inside" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Paul+Horn+Inside" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="john tropea to touch you again" data-genre="Fusion">
+<div class="card" data-search="john tropea to touch you again" data-genre="Fusion" data-artist="john tropea" data-date="2026-06-10" data-index="4">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/vVXLPw8vsUsXWjzG_pRwK1RRn35X_MW_KwSm-JC9FLE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1NjAy/NjQxLTE1OTQzNjQ5/NDEtOTY1OS5qcGVn.jpeg" alt="To Touch You Again cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -404,12 +384,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(6 ratings · 44 want / 107 have)</span></div>
     <div class="shop">22-14736-67800 ebay · 6/10/2026 · <span class="price">$4.20</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+John+Tropea+To+Touch+You+Again" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+John+Tropea+To+Touch+You+Again" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="larry coryell (with john scofield & joe beck) tributaries" data-genre="Unclassified">
+<div class="card" data-search="larry coryell (with john scofield & joe beck) tributaries" data-genre="Unclassified" data-artist="larry coryell (with john scofield &amp; joe beck)" data-date="2026-06-10" data-index="5">
   <div class="cover-wrap">
     <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9c/b5/8e/9cb58e8a-9abc-4590-c663-9a4f682e6080/886446395852.jpg/600x600bb.jpg" alt="Tributaries cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -427,12 +407,12 @@
     </div>
     
     <div class="shop">22-14736-67800 ebay · 6/10/2026 · <span class="price">$4.20</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Larry+Coryell+%28with+John+Scofield+%26+Joe+Beck%29+Tributaries" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Larry+Coryell+%28with+John+Scofield+%26+Joe+Beck%29+Tributaries" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="mark colby serpentine fire" data-genre="Smooth Jazz">
+<div class="card" data-search="mark colby serpentine fire" data-genre="Smooth Jazz" data-artist="mark colby" data-date="2026-06-10" data-index="6">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/dGfLBLEuBIaq2gjh-Tr7XvuNawY_Q-UiSi73RsZqxm4/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2Mjkx/NDctMTQ1NjkxNjgw/MS0xNDAzLmpwZWc.jpeg" alt="Serpentine Fire cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -450,12 +430,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.25</span><span>(16 ratings · 64 want / 229 have)</span></div>
     <div class="shop">22-14736-67800 ebay · 6/10/2026 · <span class="price">$4.20</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Mark+Colby+Serpentine+Fire" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Mark+Colby+Serpentine+Fire" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="paulo ramos band zig zag" data-genre="Jazz-Funk">
+<div class="card" data-search="paulo ramos band zig zag" data-genre="Jazz-Funk" data-artist="paulo ramos band" data-date="2026-06-10" data-index="7">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/BbCGvd2db2CngJLfUsFJmBBY9klfJqwUXrdtSCipCt0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk2MDE1/NTMtMTUwNDk3ODcy/MS0xOTg3LmpwZWc.jpeg" alt="Zig zag cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -473,12 +453,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.0</span><span>(1 rating · 7 want / 26 have)</span></div>
     <div class="shop">22-14736-67800 ebay · 6/10/2026 · <span class="price">$4.20</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Paulo+Ramos+Band+Zig+zag" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Paulo+Ramos+Band+Zig+zag" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="stanley turrentine west side highway" data-genre="Smooth Jazz">
+<div class="card" data-search="stanley turrentine west side highway" data-genre="Smooth Jazz" data-artist="stanley turrentine" data-date="2026-06-10" data-index="8">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/tY5YRdAGFLAC7vs2KOIH-YOUr3YBw6gYlMT_YCf2jZw/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NDM1/NzA1LTE2MjcxNjA1/MDktOTY3OS5qcGVn.jpeg" alt="West Side Highway cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -496,12 +476,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.56</span><span>(9 ratings · 18 want / 274 have)</span></div>
     <div class="shop">22-14736-67800 ebay · 6/10/2026 · <span class="price">$4.20</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">Nightwings is an album by jazz saxophonist Stanley Turrentine. It was recorded for the Fantasy label in 1977 and features performances by Turrentine with an orchestra arranged and conducted by Claus Ogerman. <a href="https://en.wikipedia.org/wiki/Nightwings_(Stanley_Turrentine_album)" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Stanley+Turrentine+West+Side+Highway" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Stanley+Turrentine+West+Side+Highway" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="tania maria piquant" data-genre="Latin Jazz">
+<div class="card" data-search="tania maria piquant" data-genre="Latin Jazz" data-artist="tania maria" data-date="2026-06-10" data-index="9">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/aoThqyKLra0ISCM3uxz3wUNzyMRnvfX6Ask2YGUUM7w/rs:fit/g:sm/q:90/h:602/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5NDcy/OTQtMTY3MTQ2NTY0/Ny01MzY3LmpwZWc.jpeg" alt="Piquant cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -519,12 +499,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.36</span><span>(55 ratings · 179 want / 925 have)</span></div>
     <div class="shop">22-14736-67800 ebay · 6/10/2026 · <span class="price">$4.20</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Tania+Maria+Piquant" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Tania+Maria+Piquant" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="cap’n john handy with the claude hopkins band introducing cap’n john handy and his men of jazz" data-genre="Unclassified">
+<div class="card" data-search="cap’n john handy with the claude hopkins band introducing cap’n john handy and his men of jazz" data-genre="Unclassified" data-artist="cap’n john handy with the claude hopkins band" data-date="2026-06-11" data-index="10">
   <div class="cover-wrap">
     <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/c4/54/73/c4547364-a91b-1090-a021-c9c33590f32a/886446882291.jpg/600x600bb.jpg" alt="Introducing Cap’n John Handy and His Men of Jazz cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -542,12 +522,12 @@
     </div>
     
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Cap%E2%80%99n+John+Handy+with+the+Claude+Hopkins+Band+Introducing+Cap%E2%80%99n+John+Handy+and+His+Men+of+Jazz" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Cap%E2%80%99n+John+Handy+with+the+Claude+Hopkins+Band+Introducing+Cap%E2%80%99n+John+Handy+and+His+Men+of+Jazz" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="edie adams behind those swingin’ doors" data-genre="Jazz">
+<div class="card" data-search="edie adams behind those swingin’ doors" data-genre="Jazz" data-artist="edie adams" data-date="2026-06-11" data-index="11">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Wry_bZ1EsBafbcmSaRbzrdXWjW0tMzTfBp_0OaA2RS0/rs:fit/g:sm/q:90/h:607/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM3MjM0/NjM1LTE3Nzc3NDYz/NTMtOTgzMy5qcGVn.jpeg" alt="Behind Those Swingin’ Doors cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -565,12 +545,12 @@
     </div>
     
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Edie+Adams+Behind+Those+Swingin%E2%80%99+Doors" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Edie+Adams+Behind+Those+Swingin%E2%80%99+Doors" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="joe bushkin nightsounds" data-genre="Swing">
+<div class="card" data-search="joe bushkin nightsounds" data-genre="Swing" data-artist="joe bushkin" data-date="2026-06-11" data-index="12">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/syImlsWPjBGHSzIQzl8Jri5cFbtXeGueq3yu_MN57tc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU4OTQ5/NjMtMTQwNTYzODUw/MC02Njc5LmpwZWc.jpeg" alt="Nightsounds cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -588,12 +568,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.29</span><span>(7 ratings · 12 want / 106 have)</span></div>
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Joe+Bushkin+Nightsounds" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Joe+Bushkin+Nightsounds" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="les baxter baxter’s best" data-genre="Space-Age">
+<div class="card" data-search="les baxter baxter’s best" data-genre="Space-Age" data-artist="les baxter" data-date="2026-06-11" data-index="13">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/5CHTfAiLInLJVmdC7fcFOH0_m8u6jRDGSPjrmRrYUKo/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2MDAy/MTMyLTE2ODI1ODI0/MjEtNzUwMC5qcGVn.jpeg" alt="Baxter’s Best cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -611,12 +591,12 @@
     </div>
     
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Les+Baxter+Baxter%E2%80%99s+Best" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Les+Baxter+Baxter%E2%80%99s+Best" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="louis armstrong hello, dolly!" data-genre="Swing">
+<div class="card" data-search="louis armstrong hello, dolly!" data-genre="Swing" data-artist="louis armstrong" data-date="2026-06-11" data-index="14">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/tpJSt_3zPEtySZK6YtvTtgtIio7DkDXklmJmMcxhysQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NTA2/ODcwLTE2MTM4NDQ1/NjctNTQ0NS5qcGVn.jpeg" alt="Hello, Dolly! cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -634,12 +614,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.5</span><span>(4 ratings · 34 want / 134 have)</span></div>
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Louis+Armstrong+Hello%2C+Dolly%21" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Louis+Armstrong+Hello%2C+Dolly%21" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="pearl bailey intoxicating pearl bailey" data-genre="Jazz">
+<div class="card" data-search="pearl bailey intoxicating pearl bailey" data-genre="Jazz" data-artist="pearl bailey" data-date="2026-06-11" data-index="15">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/86SZRaQ8_2z85g-mUFGZeH52zCz8gVwaZVXQN0FEfBc/rs:fit/g:sm/q:90/h:601/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0NzI5/MDcxLTE2NjQ5ODgw/NzAtOTI3My5qcGVn.jpeg" alt="Intoxicating Pearl Bailey cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -657,12 +637,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(1 rating · 1 want / 20 have)</span></div>
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Pearl+Bailey+Intoxicating+Pearl+Bailey" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Pearl+Bailey+Intoxicating+Pearl+Bailey" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="sil austin plays pretty for the people again" data-genre="Rhythm & Blues">
+<div class="card" data-search="sil austin plays pretty for the people again" data-genre="Rhythm & Blues" data-artist="sil austin" data-date="2026-06-11" data-index="16">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Ozrb-qyf_YF2C_H_HKEnilaftykq-3DszZ39OCOqqfs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzMzgy/NDEtMTU1NTY5MTcz/NC04NjE2LmpwZWc.jpeg" alt="Plays Pretty for the People Again cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -680,12 +660,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(1 rating · 4 want / 11 have)</span></div>
     <div class="shop">22-14736-67799 ebay · 6/11/2026 · <span class="price">$3.49</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Sil+Austin+Plays+Pretty+for+the+People+Again" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Sil+Austin+Plays+Pretty+for+the+People+Again" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="matrix wizard" data-genre="Fusion">
+<div class="card" data-search="matrix wizard" data-genre="Fusion" data-artist="matrix" data-date="2026-06-13" data-index="17">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/_XoxHHL07cJI-kzkRbduIEZ3AYjlW6jgu3TSEIXF2Y4/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0OTE5/MjcwLTE3NTYxMzUx/NDQtODczMS5qcGVn.jpeg" alt="Wizard cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -703,12 +683,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.67</span><span>(3 ratings · 7 want / 17 have)</span></div>
     <div class="shop">Shuga Wicker · 6/13/2026 · <span class="price">$8.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Matrix+Wizard" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Matrix+Wizard" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="neil diamond hot august night" data-genre="Soft Rock">
+<div class="card" data-search="neil diamond hot august night" data-genre="Soft Rock" data-artist="neil diamond" data-date="2026-06-13" data-index="18">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/qoS_vJSH1MC4timFMlv_Igd0xttoQxw9OTa9jn55jnA/rs:fit/g:sm/q:90/h:582/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2NjA2/ODEtMTUyMTE5NDcw/MS02NjY5LmpwZWc.jpeg" alt="Hot august night cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -726,12 +706,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.54</span><span>(41 ratings · 49 want / 774 have)</span></div>
     <div class="shop">Shuga Wicker · 6/13/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Neil+Diamond+Hot+august+night" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Neil+Diamond+Hot+august+night" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="tom scott blow it out" data-genre="Smooth Jazz">
+<div class="card" data-search="tom scott blow it out" data-genre="Smooth Jazz" data-artist="tom scott" data-date="2026-06-13" data-index="19">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/JtDvdITNCaiFlxbhKZpmob6OQRR8CXsHh-65wzxZQ_s/rs:fit/g:sm/q:90/h:629/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNTI1/NzAxLTE1MzY5ODM3/NjEtNTI2Ny5qcGVn.jpeg" alt="Blow it out cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -749,12 +729,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.0</span><span>(1 rating · 21 want / 23 have)</span></div>
     <div class="shop">Shuga Wicker · 6/13/2026 · <span class="price">$5.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Tom+Scott+Blow+it+out" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Tom+Scott+Blow+it+out" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="bill doggett the band with the beat" data-genre="Jump Blues">
+<div class="card" data-search="bill doggett the band with the beat" data-genre="Jump Blues" data-artist="bill doggett" data-date="2026-06-17" data-index="20">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Iv7tCvoNZsxuXGfZPOUcJThklGwSF1S88YbtVwFM5FM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NzM4/MDEtMTYzMTgyNDk0/MC0yMjEzLmpwZWc.jpeg" alt="The Band With The Beat cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -772,12 +752,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.11</span><span>(9 ratings · 27 want / 133 have)</span></div>
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Bill+Doggett+The+Band+With+The+Beat" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Bill+Doggett+The+Band+With+The+Beat" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="chuck berry st. louie to frisco to memphis (disc 2)" data-genre="Blues Rock">
+<div class="card" data-search="chuck berry st. louie to frisco to memphis (disc 2)" data-genre="Blues Rock" data-artist="chuck berry" data-date="2026-06-17" data-index="21">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/tu5MgQzCQzG10HZfmoaeKAAUp83C3CbXNGs_v4tDsoo/rs:fit/g:sm/q:90/h:609/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3Mjgz/MDgtMTUyNTQyMTUz/OC0xMzM3LmpwZWc.jpeg" alt="St. Louie To Frisco To Memphis (Disc 2) cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -795,12 +775,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.92</span><span>(48 ratings · 66 want / 1165 have)</span></div>
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Chuck+Berry+St.+Louie+To+Frisco+To+Memphis+%28Disc+2%29" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Chuck+Berry+St.+Louie+To+Frisco+To+Memphis+%28Disc+2%29" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="chuck mangione land of make believe" data-genre="Smooth Jazz">
+<div class="card" data-search="chuck mangione land of make believe" data-genre="Smooth Jazz" data-artist="chuck mangione" data-date="2026-06-17" data-index="22">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/MCbjnWAJTfVP0FPKW_Ysbgs9DXrow6WIIy1C43cwOGM/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMDc2/NjcyLTE1Mjc4ODQ4/NzItNTg4Mi5qcGVn.jpeg" alt="Land of Make Believe cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -818,12 +798,12 @@
     </div>
     
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Chuck+Mangione+Land+of+Make+Believe" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Chuck+Mangione+Land+of+Make+Believe" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="george benson breezin’" data-genre="Smooth Jazz">
+<div class="card" data-search="george benson breezin’" data-genre="Smooth Jazz" data-artist="george benson" data-date="2026-06-17" data-index="23">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/AXBX9MGUtt9jBdkQckIkTb-dZgMKwg1RvRyLoV5XpsY/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1ODMz/NTc2LTE2MDI4NzIx/NTItNDQyMC5qcGVn.jpeg" alt="Breezin’ cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -841,12 +821,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.14</span><span>(28 ratings · 137 want / 618 have)</span></div>
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+George+Benson+Breezin%E2%80%99" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+George+Benson+Breezin%E2%80%99" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jimmy mcgriff honey" data-genre="Soul-Jazz">
+<div class="card" data-search="jimmy mcgriff honey" data-genre="Soul-Jazz" data-artist="jimmy mcgriff" data-date="2026-06-17" data-index="24">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/H_Gp2sLrQwc1EnpzzZ8pccnx7hfgKuUMVfKyzmq3Z24/rs:fit/g:sm/q:90/h:609/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODA4/NDQ4LTE1NjE1ODA5/ODktMTY4Ni5qcGVn.jpeg" alt="Honey cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -864,12 +844,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.25</span><span>(4 ratings · 20 want / 57 have)</span></div>
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">Honey is an album by American jazz organist Jimmy McGriff featuring McGriff&#x27;s performances of contemporary soul music hits recorded in 1968 and first released on the Solid State label. <a href="https://en.wikipedia.org/wiki/Honey_(Jimmy_McGriff_album)" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jimmy+McGriff+Honey" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jimmy+McGriff+Honey" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="kid ory and his creole jazz band the original jazz" data-genre="Unclassified">
+<div class="card" data-search="kid ory and his creole jazz band the original jazz" data-genre="Unclassified" data-artist="kid ory and his creole jazz band" data-date="2026-06-17" data-index="25">
   <div class="cover-wrap">
     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -892,12 +872,12 @@
     </div>
     
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Kid+Ory+and+His+Creole+Jazz+Band+The+Original+Jazz" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Kid+Ory+and+His+Creole+Jazz+Band+The+Original+Jazz" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="les paul & mary ford warm and wonderful" data-genre="Folk, World, & Country">
+<div class="card" data-search="les paul & mary ford warm and wonderful" data-genre="Folk, World, & Country" data-artist="les paul &amp; mary ford" data-date="2026-06-17" data-index="26">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/JTfsMquwSUqVf9wGlM3HL7QUNxUTNS-amL1Ra-sXLM8/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwMDIx/ODc3LTE3MDk3NjM5/OTAtNDE5NC5qcGVn.jpeg" alt="Warm and Wonderful cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -915,12 +895,12 @@
     </div>
     
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">Bouquet of Roses is an album by Les Paul and Mary Ford, released in 1962. <a href="https://en.wikipedia.org/wiki/Bouquet_of_Roses_(album)" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Les+Paul+%26+Mary+Ford+Warm+and+Wonderful" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Les+Paul+%26+Mary+Ford+Warm+and+Wonderful" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="the charles lloyd quartet love-in" data-genre="Post Bop">
+<div class="card" data-search="the charles lloyd quartet love-in" data-genre="Post Bop" data-artist="the charles lloyd quartet" data-date="2026-06-17" data-index="27">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/cFtW5NHOCTSYeq8PVBBeMpOmWSfJZZbFRw5faiz3TUs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM3MDUw/NTE5LTE3NzYwMzEw/ODktODYxNi5qcGVn.jpeg" alt="Love-In cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -938,12 +918,12 @@
     </div>
     
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+The+Charles+Lloyd+Quartet+Love-In" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+The+Charles+Lloyd+Quartet+Love-In" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="various blues: oldies and goodies" data-genre="Blues">
+<div class="card" data-search="various blues: oldies and goodies" data-genre="Blues" data-artist="various" data-date="2026-06-17" data-index="28">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/JtoR_GW0lsnN-imbDY22zWcpV38s9L2dKhsXkpA-dWY/rs:fit/g:sm/q:90/h:617/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMDYz/NzY2LTE1Mjc1NTM0/MzctMjAyNi5qcGVn.jpeg" alt="Blues: Oldies and Goodies cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -961,12 +941,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(2 ratings · 3 want / 28 have)</span></div>
     <div class="shop">24-14777-25680 ebay · 6/17/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Various+Blues%3A+Oldies+and+Goodies" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Various+Blues%3A+Oldies+and+Goodies" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jean-luc ponty live" data-genre="Jazz-Rock">
+<div class="card" data-search="jean-luc ponty live" data-genre="Jazz-Rock" data-artist="jean-luc ponty" data-date="2026-06-18" data-index="29">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/z_IzPm5h3ihogO3cf729CeM3pjnh1cZ7wpnxKLJm-Sw/rs:fit/g:sm/q:90/h:607/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjYz/NDgtMTQ2MjkwNTEx/Mi02NzgyLmpwZWc.jpeg" alt="Live cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -984,12 +964,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.48</span><span>(29 ratings · 22 want / 338 have)</span></div>
     <div class="shop">03-14801-58147 · 6/18/2026 · <span class="price">$5.05</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jean-Luc+Ponty+Live" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jean-Luc+Ponty+Live" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="ramsey lewis the best of" data-genre="Soul-Jazz">
+<div class="card" data-search="ramsey lewis the best of" data-genre="Soul-Jazz" data-artist="ramsey lewis" data-date="2026-06-18" data-index="30">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/kP--mrRGHaDQoSPusD6A82LBF7IiiILrFNB-hHfuUho/rs:fit/g:sm/q:90/h:285/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjI3/NDItMTUzNDIwODMy/OC05NzMyLmpwZWc.jpeg" alt="The Best Of cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1007,12 +987,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(1 rating · 2 want / 7 have)</span></div>
     <div class="shop">03-14801-58147 · 6/18/2026 · <span class="price">$5.05</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+The+Best+Of" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+The+Best+Of" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="ramsey lewis trio bohemian caverns" data-genre="Soul-Jazz">
+<div class="card" data-search="ramsey lewis trio bohemian caverns" data-genre="Soul-Jazz" data-artist="ramsey lewis trio" data-date="2026-06-18" data-index="31">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/UxhRlbJoRumExTn-MDV47dbA0Z_8CKlL8E3RK8dvuVg/rs:fit/g:sm/q:90/h:607/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc3OTA4/OTUtMTQ5OTk3ODI4/Ny01MjE5LmpwZWc.jpeg" alt="Bohemian Caverns cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1030,12 +1010,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.5</span><span>(6 ratings · 14 want / 102 have)</span></div>
     <div class="shop">03-14801-58147 · 6/18/2026 · <span class="price">$5.05</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Trio+Bohemian+Caverns" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Trio+Bohemian+Caverns" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="ramsey lewis inside ramsey lewis" data-genre="Soul-Jazz">
+<div class="card" data-search="ramsey lewis inside ramsey lewis" data-genre="Soul-Jazz" data-artist="ramsey lewis" data-date="2026-06-18" data-index="32">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/EctUENeTkj_wdPByn2aed3fMW8s6lV99NDhCTEQ1zhs/rs:fit/g:sm/q:90/h:592/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1ODkx/ODc4LTE1OTk2ODcz/ODEtMzA2Ny5qcGVn.jpeg" alt="Inside Ramsey Lewis cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1053,12 +1033,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(3 ratings · 4 want / 15 have)</span></div>
     <div class="shop">03-14801-58147 · 6/18/2026 · <span class="price">$5.05</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Inside+Ramsey+Lewis" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Inside+Ramsey+Lewis" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="coleman hawkins and his all-stars timeless jazz" data-genre="Unclassified">
+<div class="card" data-search="coleman hawkins and his all-stars timeless jazz" data-genre="Unclassified" data-artist="coleman hawkins and his all-stars" data-date="2026-06-20" data-index="33">
   <div class="cover-wrap">
     <img src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ee/e9/85/eee98538-55a5-b79b-b6c4-8eb8405b4460/00888072058613.rgb.jpg/600x600bb.jpg" alt="Timeless Jazz cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1076,12 +1056,12 @@
     </div>
     
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$1.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Coleman+Hawkins+And+His+All-Stars+Timeless+Jazz" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Coleman+Hawkins+And+His+All-Stars+Timeless+Jazz" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="herman foster explosive piano of herman foster" data-genre="Jazz">
+<div class="card" data-search="herman foster explosive piano of herman foster" data-genre="Jazz" data-artist="herman foster" data-date="2026-06-20" data-index="34">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/rNOIhxj7OB2SSAxwf97hiF-Rk4g6saJep9-q8IbpyUU/rs:fit/g:sm/q:90/h:269/w:271/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUwNDU0/NTEtMTM4MzAwNzA0/MC0zNTcyLmpwZWc.jpeg" alt="Explosive Piano of Herman Foster cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1099,12 +1079,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(2 ratings · 64 want / 45 have)</span></div>
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$5.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Herman+Foster+Explosive+Piano+of+Herman+Foster" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Herman+Foster+Explosive+Piano+of+Herman+Foster" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jimmy hamilton swing low, sweet clarinet" data-genre="Jazz">
+<div class="card" data-search="jimmy hamilton swing low, sweet clarinet" data-genre="Jazz" data-artist="jimmy hamilton" data-date="2026-06-20" data-index="35">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/c1UHk2vo0Kkq0l9ufnhagdwoh41LrrQc8zBJFDNuKXA/rs:fit/g:sm/q:90/h:606/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUwOTM0/NTEtMTcxNTgwNzE3/Mi0xOTk2LmpwZWc.jpeg" alt="Swing Low, Sweet Clarinet cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1122,12 +1102,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(1 rating · 5 want / 21 have)</span></div>
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$1.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jimmy+Hamilton+Swing+Low%2C+Sweet+Clarinet" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jimmy+Hamilton+Swing+Low%2C+Sweet+Clarinet" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="johnny jones & billy boy arnold johnny jones with billy boy arnold" data-genre="Chicago Blues">
+<div class="card" data-search="johnny jones & billy boy arnold johnny jones with billy boy arnold" data-genre="Chicago Blues" data-artist="johnny jones &amp; billy boy arnold" data-date="2026-06-20" data-index="36">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/lWKMsVMqCS35YSifNtxmrxD794ngVJ80ZYAiuTyiCNY/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NjMx/MjMtMTU2MjA3MzYz/Ni04MjUwLmpwZWc.jpeg" alt="Johnny Jones with Billy Boy Arnold cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1145,12 +1125,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.26</span><span>(19 ratings · 31 want / 214 have)</span></div>
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$6.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Johnny+Jones+%26+Billy+Boy+Arnold+Johnny+Jones+with+Billy+Boy+Arnold" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Johnny+Jones+%26+Billy+Boy+Arnold+Johnny+Jones+with+Billy+Boy+Arnold" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="roy eldridge nifty cat strikes west" data-genre="Swing">
+<div class="card" data-search="roy eldridge nifty cat strikes west" data-genre="Swing" data-artist="roy eldridge" data-date="2026-06-20" data-index="37">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/iO4n0wgHJfN_h2sNtv4gUQnKjzWstbFMstS1n8oh-7Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU0MTIx/MjktMTYxNzYxNzQx/MC0yMjQ5LmpwZWc.jpeg" alt="Nifty Cat Strikes West cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1168,12 +1148,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.57</span><span>(7 ratings · 7 want / 96 have)</span></div>
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$4.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Roy+Eldridge+Nifty+Cat+Strikes+West" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Roy+Eldridge+Nifty+Cat+Strikes+West" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="stan getz opus de bop" data-genre="Bop">
+<div class="card" data-search="stan getz opus de bop" data-genre="Bop" data-artist="stan getz" data-date="2026-06-20" data-index="38">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/TCuO9hZ9b-9jkc2Fu-xQDAaP433fffcu9T_ZTCh-9es/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMTc1/MTYtMTM1MjQ4NzQw/My04Nzg0LmpwZWc.jpeg" alt="Opus De Bop cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1191,12 +1171,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.06</span><span>(16 ratings · 21 want / 189 have)</span></div>
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Stan+Getz+Opus+De+Bop" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Stan+Getz+Opus+De+Bop" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="various blues jam" data-genre="Chicago Blues">
+<div class="card" data-search="various blues jam" data-genre="Chicago Blues" data-artist="various" data-date="2026-06-20" data-index="39">
   <div class="cover-wrap">
     <img src="https://st.discogs.com/398c676906123b1dcbbbb5e91a2902e0c2c6c719/images/spacer.gif" alt="Blues Jam cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1214,12 +1194,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(1 rating · 0 want / 3 have)</span></div>
     <div class="shop">Dusty Groove · 6/20/2026 · <span class="price">$5.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Various+Blues+Jam" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Various+Blues+Jam" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="billie eilish don't smile at me" data-genre="Indie Pop">
+<div class="card" data-search="billie eilish don't smile at me" data-genre="Indie Pop" data-artist="billie eilish" data-date="2026-06-25" data-index="40">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/SCsOKAP7NxUWNBBF8PZS7N1PymIiYyYbHIhmYE6laJM/rs:fit/g:sm/q:90/h:951/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM1Nzkz/MjYyLTE3NjQ0MDU0/NjQtMTI0MC5qcGVn.jpeg" alt="Don't Smile at Me cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1237,12 +1217,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(4 ratings · 20 want / 13 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Billie+Eilish+Don%27t+Smile+at+Me" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Billie+Eilish+Don%27t+Smile+at+Me" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="cirkus prütz white jazz - black magic" data-genre="Rhythm & Blues">
+<div class="card" data-search="cirkus prütz white jazz - black magic" data-genre="Rhythm & Blues" data-artist="cirkus prütz" data-date="2026-06-25" data-index="41">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/-z9tSQiWQqKRSH46h4I8zlvBE6b5n7EoKJXrVepoefU/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzOTI0/MDMzLTE1NjQxNjg0/MzUtOTMxOC5qcGVn.jpeg" alt="White Jazz - Black Magic cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1260,12 +1240,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.14</span><span>(7 ratings · 8 want / 62 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Cirkus+Pr%C3%BCtz+White+Jazz+-+Black+Magic" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Cirkus+Pr%C3%BCtz+White+Jazz+-+Black+Magic" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="country joe & the fish the life and times of country joe and the fish from haight-ashbury to woodstock" data-genre="Psychedelic Rock">
+<div class="card" data-search="country joe & the fish the life and times of country joe and the fish from haight-ashbury to woodstock" data-genre="Psychedelic Rock" data-artist="country joe &amp; the fish" data-date="2026-06-25" data-index="42">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/1_UQ6b7ovsM92egRWIgn2_Kiv07H7Ch9LiKCGgtbelY/rs:fit/g:sm/q:90/h:615/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcwNTk3/ODAtMTUwNjI2ODkw/NS0yMDQ3LmpwZWc.jpeg" alt="The Life and Times of Country Joe and the Fish from Haight-Ashbury to Woodstock cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1283,12 +1263,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.11</span><span>(9 ratings · 35 want / 61 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Country+Joe+%26+The+Fish+The+Life+and+Times+of+Country+Joe+and+the+Fish+from+Haight-Ashbury+to+Woodstock" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Country+Joe+%26+The+Fish+The+Life+and+Times+of+Country+Joe+and+the+Fish+from+Haight-Ashbury+to+Woodstock" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="emerson, lake & palmer brain salad surgery" data-genre="Prog Rock">
+<div class="card" data-search="emerson, lake & palmer brain salad surgery" data-genre="Prog Rock" data-artist="emerson, lake &amp; palmer" data-date="2026-06-25" data-index="43">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/ioJLvHAlIUJWeQVzai-GxEBcwnifmsvPlYCeOKSlTt4/rs:fit/g:sm/q:90/h:612/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ3MTk5/OTktMTU3ODI1MTMw/OC03MjAwLmpwZWc.jpeg" alt="Brain Salad Surgery cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1306,12 +1286,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.43</span><span>(23 ratings · 130 want / 244 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">Brain Salad Surgery is the fourth studio album by English progressive rock band Emerson, Lake &amp; Palmer, released on 7 December 1973 by their new record label, Manticore Records, and distributed by Atlantic Records. <a href="https://en.wikipedia.org/wiki/Brain_Salad_Surgery" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Emerson%2C+Lake+%26+Palmer+Brain+Salad+Surgery" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Emerson%2C+Lake+%26+Palmer+Brain+Salad+Surgery" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="fleetwood mac heroes are hard to find" data-genre="Blues Rock">
+<div class="card" data-search="fleetwood mac heroes are hard to find" data-genre="Blues Rock" data-artist="fleetwood mac" data-date="2026-06-25" data-index="44">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/NsFIPQZPLid14yz1ubXRIWrDH6vA9Nzovq3rFV2V0uY/rs:fit/g:sm/q:90/h:590/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MjQ1/NjQxLTE1NzA2Mzgx/NzAtMjg5Mi5qcGVn.jpeg" alt="Heroes Are Hard to Find cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1329,12 +1309,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(3 ratings · 86 want / 80 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Fleetwood+Mac+Heroes+Are+Hard+to+Find" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Fleetwood+Mac+Heroes+Are+Hard+to+Find" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="it’s a beautiful day at carnegie hall" data-genre="Folk Rock">
+<div class="card" data-search="it’s a beautiful day at carnegie hall" data-genre="Folk Rock" data-artist="it’s a beautiful day" data-date="2026-06-25" data-index="45">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/EgWBIU943jShAXdP8qxAcXw-TQ3DhCeVmjaecJJGv_A/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyOTY5/Nzg0LTE1NDU2MjI1/ODQtODU4NC5qcGVn.jpeg" alt="At Carnegie Hall cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1352,12 +1332,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.0</span><span>(2 ratings · 16 want / 34 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+It%E2%80%99s+A+Beautiful+Day+At+Carnegie+Hall" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+It%E2%80%99s+A+Beautiful+Day+At+Carnegie+Hall" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="roxy music avalon" data-genre="Pop Rock">
+<div class="card" data-search="roxy music avalon" data-genre="Pop Rock" data-artist="roxy music" data-date="2026-06-25" data-index="46">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/o9haPEvgTTzsVirdzCRqwxk9366jvSz4VAP3bJlRM8g/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcwOTk4/NTktMTQ3MDMxOTA2/OC01MTU2LmpwZWc.jpeg" alt="Avalon cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1375,12 +1355,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.44</span><span>(104 ratings · 422 want / 1391 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Roxy+Music+Avalon" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Roxy+Music+Avalon" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="the beatles rarities" data-genre="Beat">
+<div class="card" data-search="the beatles rarities" data-genre="Beat" data-artist="the beatles" data-date="2026-06-25" data-index="47">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/armbSXt4l-hmuTdOVqc29Ez4_jXhHQj9Ho2ihV1WgAE/rs:fit/g:sm/q:90/h:582/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0NDgy/OTQ1LTE2NjI5MTI5/MzYtMzE1My5qcGVn.jpeg" alt="Rarities cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1398,12 +1378,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(1 rating · 17 want / 12 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+The+Beatles+Rarities" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+The+Beatles+Rarities" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="status quo blue for you" data-genre="Pop Rock">
+<div class="card" data-search="status quo blue for you" data-genre="Pop Rock" data-artist="status quo" data-date="2026-06-25" data-index="48">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/1CSisxXZS83LGqEWx7UbrJNAy2vPJPTzamE7uFyNtkQ/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczNjYx/MzgtMTQ1MDUyODkx/Ni00ODA3LmpwZWc.jpeg" alt="Blue for You cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1421,12 +1401,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.25</span><span>(69 ratings · 90 want / 1623 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$0.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Status+Quo+Blue+for+You" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Status+Quo+Blue+for+You" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="status quo quo" data-genre="Pop Rock">
+<div class="card" data-search="status quo quo" data-genre="Pop Rock" data-artist="status quo" data-date="2026-06-25" data-index="49">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/T7crUo8kI_Y8cxlQFaN7uubk0YR7l0g_2ppw-IZGOWc/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1NjAw/NDUzLTE2NzIzMDY2/MTYtMzI2MC5qcGVn.jpeg" alt="Quo cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1444,12 +1424,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.33</span><span>(3 ratings · 18 want / 25 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$0.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Status+Quo+Quo" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Status+Quo+Quo" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="tom waits blue valentine" data-genre="Blues Rock">
+<div class="card" data-search="tom waits blue valentine" data-genre="Blues Rock" data-artist="tom waits" data-date="2026-06-25" data-index="50">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/eqBV80BmbU5WqfIYJ1sCX6F8GQNtuqvjVKar3Ub5ijs/rs:fit/g:sm/q:90/h:300/w:301/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5NDI2/MTgtMTM4MDY5ODIy/My0zNDkwLmpwZWc.jpeg" alt="Blue Valentine cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1467,12 +1447,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.56</span><span>(27 ratings · 235 want / 277 have)</span></div>
     <div class="shop">25-14790-62028 · 6/25/2026 · <span class="price">$3.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Tom+Waits+Blue+Valentine" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Tom+Waits+Blue+Valentine" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jethro tull this was" data-genre="Blues Rock">
+<div class="card" data-search="jethro tull this was" data-genre="Blues Rock" data-artist="jethro tull" data-date="2026-06-27" data-index="51">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Jy9yAwKKAhDblegvQaAaDSyiznIYQzYKBxqMtGh4INA/rs:fit/g:sm/q:90/h:602/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4NTU2/MzctMTQ4NTY1NDc2/NC02NjcwLmpwZWc.jpeg" alt="This Was cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1490,12 +1470,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.3</span><span>(10 ratings · 103 want / 113 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 6/27/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jethro+Tull+This+Was" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jethro+Tull+This+Was" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="joe cocker mad dogs & englishmen" data-genre="Blues Rock">
+<div class="card" data-search="joe cocker mad dogs & englishmen" data-genre="Blues Rock" data-artist="joe cocker" data-date="2026-06-27" data-index="52">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Ep-gHV9HqDubYkgfKJCwXMysFCVJJcmDTtKe2AT3xFw/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY3ODIx/NjgtMTc0Mjg5ODUz/Ny02NjE2LmpwZWc.jpeg" alt="Mad Dogs & Englishmen cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1513,12 +1493,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(3 ratings · 62 want / 29 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 6/27/2026 · <span class="price">$4.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Joe+Cocker+Mad+Dogs+%26+Englishmen" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Joe+Cocker+Mad+Dogs+%26+Englishmen" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="john handy recorded live at the monterey jazz festival" data-genre="Jazz">
+<div class="card" data-search="john handy recorded live at the monterey jazz festival" data-genre="Jazz" data-artist="john handy" data-date="2026-06-27" data-index="53">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/synb7IeTWhpnQ3Z6NGrn23KO0mwf1sG-5r9FceATGg4/rs:fit/g:sm/q:90/h:490/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzNjE3/NjctMTI3OTU1MDg0/OS5qcGVn.jpeg" alt="Recorded Live at the Monterey Jazz Festival cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1536,12 +1516,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(3 ratings · 98 want / 47 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 6/27/2026 · <span class="price">$9.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+John+Handy+Recorded+Live+at+the+Monterey+Jazz+Festival" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+John+Handy+Recorded+Live+at+the+Monterey+Jazz+Festival" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="nancy wilson / cannonball adderley nancy wilson/cannonball adderley" data-genre="Bop">
+<div class="card" data-search="nancy wilson / cannonball adderley nancy wilson/cannonball adderley" data-genre="Bop" data-artist="nancy wilson / cannonball adderley" data-date="2026-06-27" data-index="54">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/S-B3M4jjR3zGWeNaWKmOKBTPFny-jj_5I8qLZ6ilQQE/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDk2/MjE1LTE1NTUyODQ0/NTItNTQ4NS5qcGVn.jpeg" alt="Nancy Wilson/Cannonball Adderley cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1559,12 +1539,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.3</span><span>(10 ratings · 90 want / 119 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 6/27/2026 · <span class="price">$1.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Nancy+Wilson+%2F+Cannonball+Adderley+Nancy+Wilson%2FCannonball+Adderley" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Nancy+Wilson+%2F+Cannonball+Adderley+Nancy+Wilson%2FCannonball+Adderley" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="neil diamond jonathan livingston seagull" data-genre="Pop">
+<div class="card" data-search="neil diamond jonathan livingston seagull" data-genre="Pop" data-artist="neil diamond" data-date="2026-06-27" data-index="55">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/3FCZDPcQ35bb_beLAzGL2mV5Ct7_SVw2bkgVfPSwuY8/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMzNTM5/OTMxLTE3NDMxODA4/MjUtODI4NS5wbmc.jpeg" alt="Jonathan Livingston Seagull cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1582,12 +1562,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(1 rating · 2 want / 4 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 6/27/2026 · <span class="price">$1.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Neil+Diamond+Jonathan+Livingston+Seagull" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Neil+Diamond+Jonathan+Livingston+Seagull" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="ramsey lewis golden hits" data-genre="Jazz-Funk">
+<div class="card" data-search="ramsey lewis golden hits" data-genre="Jazz-Funk" data-artist="ramsey lewis" data-date="2026-06-27" data-index="56">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/SjoIUMlkxyN0ozqZ4a3EerGCuok1rDkeKiq3d_CgAHg/rs:fit/g:sm/q:90/h:577/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgzMzU1/MzktMTQ1OTYwMzg4/Ni03NzMwLmpwZWc.jpeg" alt="Golden Hits cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1605,12 +1585,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(2 ratings · 36 want / 38 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 6/27/2026 · <span class="price">$3.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Golden+Hits" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Golden+Hits" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="genesis and then there were three" data-genre="Prog Rock">
+<div class="card" data-search="genesis and then there were three" data-genre="Prog Rock" data-artist="genesis" data-date="2026-06-30" data-index="57">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/fxSHORXMpTod9aUYR8SRgazVEFeUE23iuzZF1PyfhzE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwNjAx/MTktMTQ1NTA1NDg5/MC05ODIxLmpwZWc.jpeg" alt="And then there were three cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1628,12 +1608,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.8</span><span>(44 ratings · 79 want / 797 have)</span></div>
     <div class="shop">03-14850-01016 · 6/30/2026 · <span class="price">$5.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">...And Then There Were Three... is the ninth studio album by English rock band Genesis. It was released on 31 March 1978 by Charisma Records in the UK and by Atlantic Records in the US. The album marks a major turning point in the band&#x27;s history, following the departure of guitarist Steve Hackett. This reduced the line-up to a core trio of drummer and vocalist Phil Collins, keyboardist Tony Banks, and bassist/guitarist Mike Rutherford. Faced with the loss of a primary songwriter, the remaining members deliberately shifted away from the sprawling, epic progressive rock structures that defined their previous work, opting instead for shorter, tighter, and more direct song formats. <a href="https://en.wikipedia.org/wiki/...And_Then_There_Were_Three..." target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Genesis+And+then+there+were+three" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Genesis+And+then+there+were+three" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="ramsey lewis wade in the water" data-genre="Soul-Jazz">
+<div class="card" data-search="ramsey lewis wade in the water" data-genre="Soul-Jazz" data-artist="ramsey lewis" data-date="2026-06-30" data-index="58">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Dn0xXjNH_JXFH_WAXjNrDl0sqTUdzKYr-FRP9tLkrlU/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUxMjE0/MjQtMTM4OTA3NTEx/OC0zNjA3LmpwZWc.jpeg" alt="Wade in the water cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1651,12 +1631,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.0</span><span>(3 ratings · 76 want / 95 have)</span></div>
     <div class="shop">15-14829-58944 · 6/30/2026 · <span class="price">$5.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">Wade in the Water is an album by Ramsey Lewis, issued in 1966 on Cadet Records. The album peaked at No. 2 on the Billboard R&amp;B LPs chart and No. 10 on the Billboard Top LPs chart. <a href="https://en.wikipedia.org/wiki/Wade_in_the_Water_(album)" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Wade+in+the+water" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Wade+in+the+water" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="ramsey lewis them changes" data-genre="Soul-Jazz">
+<div class="card" data-search="ramsey lewis them changes" data-genre="Soul-Jazz" data-artist="ramsey lewis" data-date="2026-06-30" data-index="59">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/hvv1dg4L5p9F4efnO7Lw5QmAuX04FzivZBCoeE0OYi4/rs:fit/g:sm/q:90/h:530/w:519/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2Mzc1/NDUtMTM0ODM5ODEx/My04NzM0LmpwZWc.jpeg" alt="Them changes cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1674,12 +1654,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.85</span><span>(13 ratings · 112 want / 178 have)</span></div>
     <div class="shop">15-14829-58944 · 6/30/2026 · <span class="price">$5.33</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">Them Changes is a live album by pianist Ramsey Lewis, released in 1970 on Cadet Records. The album peaked at No. 4 on the US Billboard Best Selling Jazz LPs and No. 34 on the US Billboard Best Selling Soul LP&#x27;s charts. <a href="https://en.wikipedia.org/wiki/Them_Changes_(Ramsey_Lewis_album)" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Them+changes" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Ramsey+Lewis+Them+changes" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="carly simon hotcakes (no secrets sleeve)" data-genre="Soft Rock">
+<div class="card" data-search="carly simon hotcakes (no secrets sleeve)" data-genre="Soft Rock" data-artist="carly simon" data-date="2026-07-03" data-index="60">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/Whe6hmaOQP_g331JQtiafQ2_KwZB6vSvs6BEdN4nRrU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc4ODgx/NjYtMTQ1MDk3MDA3/Ny05MzI0LmpwZWc.jpeg" alt="Hotcakes (No Secrets sleeve) cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1697,12 +1677,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.63</span><span>(8 ratings · 21 want / 169 have)</span></div>
     <div class="shop">Vintage Vault@Two Sisters · 7/3/2026 · <span class="price">$2.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="album-desc">No Secrets is the third studio album by American singer-songwriter Carly Simon, released by Elektra Records on November 28, 1972. <a href="https://en.wikipedia.org/wiki/No_Secrets_(Carly_Simon_album)" target="_blank" rel="noopener">[Wikipedia]</a></p><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Carly+Simon+Hotcakes+%28No+Secrets+sleeve%29" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Carly+Simon+Hotcakes+%28No+Secrets+sleeve%29" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="chris connor a jazz date with" data-genre="Cool Jazz">
+<div class="card" data-search="chris connor a jazz date with" data-genre="Cool Jazz" data-artist="chris connor" data-date="2026-07-03" data-index="61">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/BZjTjizNGsLCBEsiv6BsuXOdsxT04e8pJGmExp3vyEs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0NDYx/ODAtMTQxMTgxOTA1/NC04OTgwLmpwZWc.jpeg" alt="A Jazz date with cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1720,12 +1700,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.63</span><span>(8 ratings · 30 want / 58 have)</span></div>
     <div class="shop">Ribbon Records · 7/3/2026 · <span class="price">$5.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Chris+Connor+A+Jazz+date+with" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Chris+Connor+A+Jazz+date+with" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="dave grusin night-lines" data-genre="Contemporary Jazz">
+<div class="card" data-search="dave grusin night-lines" data-genre="Contemporary Jazz" data-artist="dave grusin" data-date="2026-07-03" data-index="62">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/NqLR0GzS8lix1FhB8qw9P_8oO4_7QJHG97RBTTviZHM/rs:fit/g:sm/q:90/h:591/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2NTQ4/MzUtMTI5OTUxMTg3/My5qcGVn.jpeg" alt="Night-lines cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1743,12 +1723,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.02</span><span>(100 ratings · 130 want / 1445 have)</span></div>
     <div class="shop">Ribbon Records · 7/3/2026 · <span class="price">$4.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Dave+Grusin+Night-lines" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Dave+Grusin+Night-lines" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="genesis a trick of the tail" data-genre="Prog Rock">
+<div class="card" data-search="genesis a trick of the tail" data-genre="Prog Rock" data-artist="genesis" data-date="2026-07-03" data-index="63">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/KQwToeXIFb_2Egwg0LrtgKst7JjqYOB5gdutODtmPjg/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg4MDYx/ODctMTczNDQ5OTQx/MC02MDgzLmpwZWc.jpeg" alt="A trick of the tail cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1766,12 +1746,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 4.42</span><span>(45 ratings · 138 want / 432 have)</span></div>
     <div class="shop">Ribbon Records · 7/3/2026 · <span class="price">$3.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Genesis+A+trick+of+the+tail" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Genesis+A+trick+of+the+tail" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jakob magnusson special treatment" data-genre="Fusion">
+<div class="card" data-search="jakob magnusson special treatment" data-genre="Fusion" data-artist="jakob magnusson" data-date="2026-07-03" data-index="64">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/t_-RO3LA6mPHLdA5JgNI3qF42uDOvHEDtHdYCxx73vw/rs:fit/g:sm/q:90/h:611/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2NjM1/NTg3LTE3NzIyNDQ5/NjgtMTIzNi5qcGVn.jpeg" alt="Special Treatment cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1789,12 +1769,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 5.0</span><span>(1 rating · 0 want / 2 have)</span></div>
     <div class="shop">Vintage Vault@Two Sisters · 7/3/2026 · <span class="price">$1.99</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jakob+Magnusson+Special+Treatment" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jakob+Magnusson+Special+Treatment" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jeff lorber fusion galaxyian" data-genre="Unclassified">
+<div class="card" data-search="jeff lorber fusion galaxyian" data-genre="Unclassified" data-artist="jeff lorber fusion" data-date="2026-07-03" data-index="65">
   <div class="cover-wrap">
     <img src="https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/0c/5e/8a/0c5e8a1b-08ff-9bc6-f13d-94d44e23ed3c/886444334679.jpg/600x600bb.jpg" alt="Galaxyian cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1812,12 +1792,12 @@
     </div>
     
     <div class="shop">Ribbon Records · 7/3/2026 · <span class="price">$4.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jeff+Lorber+Fusion+Galaxyian" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jeff+Lorber+Fusion+Galaxyian" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="jonathan cain band windy city breakdown" data-genre="AOR">
+<div class="card" data-search="jonathan cain band windy city breakdown" data-genre="AOR" data-artist="jonathan cain band" data-date="2026-07-03" data-index="66">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/wi7C2rvgFL-ackGfKOVuGNEx5joYUvPvHb-0P5c5xV0/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MzI4/NjUtMTI5MTI3MDA3/Ny5qcGVn.jpeg" alt="Windy City Breakdown cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1835,12 +1815,12 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.63</span><span>(24 ratings · 23 want / 292 have)</span></div>
     <div class="shop">Hudson Vinyl@Two Sisters · 7/3/2026 · <span class="price">$1.50</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jonathan+Cain+Band+Windy+City+Breakdown" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Jonathan+Cain+Band+Windy+City+Breakdown" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
 
-<div class="card" data-search="shirley bassey nobody does it like me" data-genre="Vocal">
+<div class="card" data-search="shirley bassey nobody does it like me" data-genre="Vocal" data-artist="shirley bassey" data-date="2026-07-03" data-index="67">
   <div class="cover-wrap">
     <img src="https://i.discogs.com/COnrMblpmi7FsouusznGlPXOoOhzNznCWtvKo0ZPFQg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0OTQy/OTctMTMzMjYyNDI4/NC5qcGVn.jpeg" alt="Nobody does it like me cover" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>
 <rect width='300' height='300' fill='%232a2a2e'/>
@@ -1858,7 +1838,7 @@
     </div>
     <div class="rating-row"><span class="rating-stars">★ 3.26</span><span>(34 ratings · 39 want / 790 have)</span></div>
     <div class="shop">Ribbon Records · 7/3/2026 · <span class="price">$1.00</span></div>
-    <details class="album-details"><summary>More info</summary><p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Shirley+Bassey+Nobody+does+it+like+me" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p></details>
+    <p class="dustygroove-link"><a href="https://www.google.com/search?q=site%3Adustygroove.com+Shirley+Bassey+Nobody+does+it+like+me" target="_blank" rel="noopener">🔍 View on Dusty Groove</a></p>
   </div>
 </div>
 
@@ -1866,6 +1846,8 @@
 <script>
   const search = document.getElementById('search');
   const genreFilter = document.getElementById('genreFilter');
+  const sortBy = document.getElementById('sortBy');
+  const grid = document.getElementById('grid');
   const cards = Array.from(document.querySelectorAll('.card'));
 
   function applyFilters() {
@@ -1880,8 +1862,29 @@
     });
   }
 
+  function applySort() {
+    const val = sortBy.value;
+    let sorted;
+    if (val === 'artist') {
+      sorted = [...cards].sort((a, b) => a.dataset.artist.localeCompare(b.dataset.artist));
+    } else if (val === 'date-desc') {
+      // records with no parseable date sort to the end regardless of direction
+      sorted = [...cards].sort((a, b) => (b.dataset.date || '0000-00-00').localeCompare(a.dataset.date || '0000-00-00'));
+    } else if (val === 'date-asc') {
+      sorted = [...cards].sort((a, b) => {
+        const da = a.dataset.date || '9999-99-99';
+        const db = b.dataset.date || '9999-99-99';
+        return da.localeCompare(db);
+      });
+    } else {
+      sorted = [...cards].sort((a, b) => parseInt(a.dataset.index) - parseInt(b.dataset.index));
+    }
+    sorted.forEach(c => grid.appendChild(c));
+  }
+
   search.addEventListener('input', applyFilters);
   genreFilter.addEventListener('change', applyFilters);
+  sortBy.addEventListener('change', applySort);
 </script>
 </body>
 </html>
