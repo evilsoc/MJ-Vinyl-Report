@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Vinyl Collection</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
   :root {
     --bg: #121214;
@@ -103,6 +104,32 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+  }
+  .charts-section {
+    max-width: 1400px;
+    margin: 0 auto 28px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .chart-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .chart-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 260px;
+    width: 100%;
   }
   .card {
     background: var(--card-bg);
@@ -226,8 +253,22 @@
       <div class="stat"><div class="value">55/68</div><div class="label">Discogs Rated</div></div>
     </div>
   </div>
-  <div class="generated-at">Generated Jul 7, 2026 5:34 PM</div>
+  <div class="generated-at">Generated Jul 8, 2026 3:07 PM</div>
 </header>
+<div class="charts-section">
+  <div class="chart-card">
+    <h3>Top Artists</h3>
+    <div class="chart-canvas-wrap"><canvas id="artistChart"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <h3>Genres</h3>
+    <div class="chart-canvas-wrap"><canvas id="genreChart"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <h3>Release Years (by decade)</h3>
+    <div class="chart-canvas-wrap"><canvas id="yearChart"></canvas></div>
+  </div>
+</div>
 <div class="controls">
   <input id="search" type="text" placeholder="Search artist or title...">
   <select id="genreFilter">
@@ -1854,6 +1895,77 @@
 
 </div>
 <script>
+  const CHART_COLORS = {
+    accent: '#d9a441',
+    muted: '#9a9aa2',
+    text: '#e8e8ea',
+    grid: '#2c2c30',
+  };
+
+  function renderCharts() {
+    if (typeof Chart === 'undefined') return; // CDN blocked/offline — charts just won't render, rest of report still works
+
+    Chart.defaults.color = CHART_COLORS.muted;
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+    const artistData = {"labels": ["John Tropea", "Paul Horn", "Nancy Wilson", "Little Milton", "Billy Eckstine", "CRB", "Status Quo", "Various", "Neil Diamond", "Ramsey Lewis"], "counts": [1, 1, 1, 1, 1, 2, 2, 2, 2, 5]};
+    const genreData = {"labels": ["Jazz", "Unclassified", "Soul-Jazz", "Smooth Jazz", "Blues Rock", "Fusion", "Swing", "Pop Rock", "Jazz-Funk", "Rhythm & Blues", "Soft Rock", "Chicago Blues", "Bop", "Modern Electric Blues", "Free Jazz", "Latin Jazz", "Space-Age", "Jump Blues", "Folk, World, & Country", "Post Bop", "Blues", "Jazz-Rock", "Indie Pop", "Psychedelic Rock", "Prog Rock", "Folk Rock", "Beat", "Pop", "Cool Jazz", "Contemporary Jazz", "AOR", "Vocal"], "counts": [7, 7, 6, 5, 5, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]};
+    const yearData = {"labels": ["1950s", "1960s", "1970s", "1980s", "2000s", "2010s", "2020s"], "counts": [2, 12, 27, 9, 1, 1, 1]};
+
+    new Chart(document.getElementById('artistChart'), {
+      type: 'bar',
+      data: {
+        labels: artistData.labels,
+        datasets: [{ data: artistData.counts, backgroundColor: CHART_COLORS.accent }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: CHART_COLORS.grid }, ticks: { stepSize: 1 } },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+
+    new Chart(document.getElementById('genreChart'), {
+      type: 'bar',
+      data: {
+        labels: genreData.labels,
+        datasets: [{ data: genreData.counts, backgroundColor: CHART_COLORS.accent }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: CHART_COLORS.grid }, ticks: { stepSize: 1 } },
+          x: { grid: { display: false }, ticks: { maxRotation: 45, minRotation: 45 } },
+        },
+      },
+    });
+
+    new Chart(document.getElementById('yearChart'), {
+      type: 'bar',
+      data: {
+        labels: yearData.labels,
+        datasets: [{ data: yearData.counts, backgroundColor: CHART_COLORS.accent }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: CHART_COLORS.grid }, ticks: { stepSize: 1 } },
+          x: { grid: { display: false } },
+        },
+      },
+    });
+  }
+  renderCharts();
+
   const search = document.getElementById('search');
   const genreFilter = document.getElementById('genreFilter');
   const sortBy = document.getElementById('sortBy');
